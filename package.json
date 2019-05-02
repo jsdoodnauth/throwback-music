@@ -1,0 +1,44 @@
+{
+  "name": "mern-boilerplate",
+  "version": "0.5.0",
+  "description": "Essentials only Boilerplate for new Mongo + React + NodeJS Projects",
+  "engines": {
+    "node": "10.x"
+  },
+  "main": "server/index.js",
+  "scripts": {
+    "client": "cd client && npm run start",
+    "start": "node server/index.js",
+    "server": "nodemon server/index.js",
+    "dev": "concurrently --kill-others-on-fail \"npm run client\" \"npm run server\"",
+    "heroku-postbuild": "cd client && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
+  },
+  "keywords": [
+    "MERN",
+    "Boilerplate",
+    "React",
+    "NodeJS",
+    "JavaScript"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jsdoodnauth/mern-boilerplate.git"
+  },
+  "author": "Joshua Doodnauth",
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.5.1",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0"
+  },
+  "devDependencies": {
+    "concurrently": "^4.1.0",
+    "nodemon": "^1.18.11",
+    "path": "^0.12.7"
+  }
+}
