@@ -10,12 +10,22 @@ const TrackSchema = new mongoose.Schema({
     trim: true,
     
   },
-  artist: artist,
-  feature: [artist],
+  artistId: {
+    ref: 'Artist',
+    type: mongoose.Schema.Types.ObjectId,
+    required: true
+  },
+  featureArtistId: [{
+    ref: 'Artist',
+    type: mongoose.Schema.Types.ObjectId
+  }],
   released: {
     type: String
   },
-  genre: genre,
+  genreId: [{
+    ref: 'Genre',
+    type: mongoose.Schema.Types.ObjectId
+  }],
   album: {
     type: String,
     trim: true

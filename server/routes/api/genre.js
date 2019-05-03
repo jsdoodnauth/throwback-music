@@ -8,7 +8,7 @@ const Genre = require('../../genre/genre.model');
  * Ref: https://blog.bitsrc.io/build-a-login-auth-app-with-mern-stack-part-1-c405048e3669
  */
 
-router.post('/genre', (req, res) => {
+router.post('/', (req, res) => {
   Genre.findOne({ name: req.body.name }).then( name => {
     if (name) {
       return res.status(400).json({ name: "Genre name already exists"});
@@ -29,7 +29,7 @@ router.post('/genre', (req, res) => {
  * @access Public
  */
 
-router.get('/genre/:name', (req, res) => {
+router.get('/:name', (req, res) => {
   try {
     Genre.findOne({ name: req.params.name }).then( name => {
       if (name) {
