@@ -25,13 +25,33 @@ router.post('/', (req, res) => {
 
 /**
  * @route GET api/genre/
+ * @desc Get All Genre
+ * @access Public
+ */
+
+router.get('/', (req, res) => {
+  try {
+    Genre.find().then( names => {
+      if (names) {
+        res.json(names);
+      } else {
+        res.status(404).json({ names: "Genre name not found" });
+      }
+    })
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+
+/**
+ * @route GET api/genre/
  * @desc Get Genre
  * @access Public
  */
 
-router.get('/:name', (req, res) => {
+router.get('/:id', (req, res) => {
   try {
-    Genre.findOne({ name: req.params.name }).then( name => {
+    Genre.findOne({ _id: req.params.id }).then( name => {
       if (name) {
         res.json(name);
       } else {

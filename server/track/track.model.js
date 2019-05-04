@@ -1,28 +1,25 @@
 const mongoose = require('mongoose');
 const timestamp = require('mongoose-timestamp');
-const artist = require('../artist/artist.model');
-const genre = require('../genre/genre.model');
 
 const TrackSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
-    trim: true,
-    
+    trim: true,    
   },
-  artistId: {
+  artist: {
     ref: 'Artist',
     type: mongoose.Schema.Types.ObjectId,
     required: true
   },
-  featureArtistId: [{
+  featureArtist: [{
     ref: 'Artist',
     type: mongoose.Schema.Types.ObjectId
   }],
   released: {
-    type: String
+    type: Date
   },
-  genreId: [{
+  genre: [{
     ref: 'Genre',
     type: mongoose.Schema.Types.ObjectId
   }],
@@ -49,6 +46,9 @@ const TrackSchema = new mongoose.Schema({
   mediaSpotify: {
     type: String,
     trim: true
+  },
+  tags: {
+    type: [String]
   }
 });
 

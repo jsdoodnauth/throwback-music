@@ -13,14 +13,19 @@ router.post('/', (req, res) => {
     if (name) {
       return res.status(400).json({ name: "Track name already exists"});
     }
-
-    console.log(req.body.featureArtistId);
-
     const newTrack = new Track({
       name: req.body.name,
-      artistId: req.body.artistId,
-      genreId: req.body.genreId,
-      featureArtistId: req.body.featureArtistId
+      artist: req.body.artist,
+      released: req.body.released,
+      genre: req.body.genre,
+      featureArtist: req.body.featureArtist,
+      album: req.body.album,
+      mediaImage: req.body.mediaImage,
+      mediaVideo: req.body.mediaVideo,
+      mediaITunes: req.body.mediaITunes,
+      mediaGooglePlay: req.body.mediaGooglePlay,
+      mediaSpotify: req.body.mediaSpotify,
+      tags: req.body.tags ? req.body.tags.replace(/\s/g,'').split(',') : req.body.tags
     });
     newTrack.save()
       .then(name => res.json(name))
@@ -49,6 +54,28 @@ router.get('/:id', (req, res) => {
 });
 
 /**
+ * @route GET api/track/detail/:id
+ * @desc Get Track Details
+ * @access Public
+ */
+
+router.get('/detail/:id', (req, res) => {
+  try {
+    Track.findOne({ _id: req.params.id })
+      .populate('artist')
+      .populate('featureArtist')
+      .populate('genre').then( name => {
+      if (name) {
+        res.json(name);
+      } else {
+        res.status(404).json({ track: "Track not found" });
+      }
+    })
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+/**
  * @route GET api/track/artist
  * @desc Get Tracks by Artist
  * @access Public
@@ -59,11 +86,11 @@ router.get('/:id', (req, res) => {
 
 router.get('/artist/:id', (req, res) => {
   try {
-    Track.find({ artistId: req.params.id }).then( name => {
+    Track.find({ artist: req.params.id }).then( name => {
       if (name) {
         res.json(name);
       } else {
-        res.status(404).json({ track: "Track not found" });
+        res.status(404).json({ track: "Tracks not found" });
       }
     })
   } catch (err) {
@@ -79,11 +106,32 @@ router.get('/artist/:id', (req, res) => {
 
 router.get('/featuredartist/:id', (req, res) => {
   try {
-    Track.find({ featureArtistId: req.params.id }).then( name => {
+    Track.find({ featureArtist: req.params.id }).then( name => {
       if (name) {
         res.json(name);
       } else {
-        res.status(404).json({ track: "Track not found" });
+        res.status(404).json({ track: "Tracks not found" });
+      }
+    })
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+
+
+/**
+ * @route GET api/track/genre
+ * @desc Get Tracks by Genre
+ * @access Public
+ */
+
+router.get('/genre/:id', (req, res) => {
+  try {
+    Track.find({ genre: req.params.id }).then( name => {
+      if (name) {
+        res.json(name);
+      } else {
+        res.status(404).json({ track: "Tracks not found" });
       }
     })
   } catch (err) {
