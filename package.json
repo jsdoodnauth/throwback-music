@@ -1,5 +1,5 @@
 {
-  "name": "mern-boilerplate",
+  "name": "throwback-music",
   "version": "0.5.0",
   "description": "Essentials only Boilerplate for new Mongo + React + NodeJS Projects",
   "engines": {
@@ -22,7 +22,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jsdoodnauth/mern-boilerplate.git"
+    "url": "git+https://github.com/jsdoodnauth/throwback-music.git"
   },
   "author": "Joshua Doodnauth",
   "license": "MIT",

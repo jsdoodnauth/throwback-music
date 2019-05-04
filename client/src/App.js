@@ -13,6 +13,9 @@ import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 import PrivateRoute from './components/auth/PrivateRoute';
 import Dashboard from './components/dashboard/dashboard';
+import CreateGenre from './components/admin/CreateGenre';
+import CreateArtist from './components/admin/CreateArtist';
+import CreateTrack from './components/admin/CreateTrack';
 
 if (localStorage.jwtToken) {
   const token = localStorage.jwtToken;
@@ -39,6 +42,9 @@ class App extends Component {
             <Route exact path='/login' component={Login} />
             <Switch>
               <PrivateRoute exact path='/dashboard' component={Dashboard} />
+              <PrivateRoute exact path='/admin/create/genre' component={CreateGenre} />
+              <PrivateRoute exact path='/admin/create/artist' component={CreateArtist} />
+              <PrivateRoute exact path='/admin/create/track' component={CreateTrack} />
             </Switch>
           </div>
         </Router>
