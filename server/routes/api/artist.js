@@ -44,7 +44,7 @@ router.get('/', (req, res) => {
   }
 });
 
-router.get('/:id', (req, res) => {
+router.get('/id/:id', (req, res) => {
   try {
     Artist.findOne({ _id: req.params.id }).then( name => {
       if (name) {
@@ -58,4 +58,17 @@ router.get('/:id', (req, res) => {
   }
 });
 
+router.get('/:slug', (req, res) => {
+  try {
+    Artist.findOne({ slug: req.params.slug }).then( name => {
+      if (name) {
+        res.json(name);
+      } else {
+        res.status(404).json({ name: "Artist not found" });
+      }
+    })
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
 module.exports = router;
