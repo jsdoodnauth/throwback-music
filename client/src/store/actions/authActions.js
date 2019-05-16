@@ -8,8 +8,12 @@ import {
   USER_LOADING
 } from './types';
 
-export const createArtist = artistData => dispatch => {
-  axios.post('/api/artist', artistData)
+
+/**
+ * Genre
+ */
+export const createGenre = genreData => dispatch => {
+  axios.post('/api/genre', genreData)
     .then(res => {
       console.info(res);
     })

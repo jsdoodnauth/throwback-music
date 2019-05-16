@@ -11,6 +11,9 @@ import Navbar from './components/layout/Navbar';
 import Landing from './components/layout/Landing';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
+import ArtistList from './components/artist/ArtistList';
+import ArtistDetail from './components/artist/ArtistDetail';
+
 import PrivateRoute from './components/auth/PrivateRoute';
 import Dashboard from './components/dashboard/dashboard';
 import CreateGenre from './components/admin/CreateGenre';
@@ -40,6 +43,8 @@ class App extends Component {
             <Route exact path='/' component={Landing} />
             <Route exact path='/register' component={Register} />
             <Route exact path='/login' component={Login} />
+            <Route exact path='/artist/list' component={ArtistList} />
+            <Route exact path='/artist/detail/:slug' component={ArtistDetail} />
             <Switch>
               <PrivateRoute exact path='/dashboard' component={Dashboard} />
               <PrivateRoute exact path='/admin/create/genre' component={CreateGenre} />

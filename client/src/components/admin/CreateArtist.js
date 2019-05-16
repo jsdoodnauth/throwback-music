@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { createArtist } from "../../store/actions/authActions";
+import { createArtist } from "../../store/actions/artistActions";
 import classnames from 'classnames';
 
 class CreateArtist extends Component {
@@ -36,6 +36,8 @@ class CreateArtist extends Component {
   };
 
   render() {
+    const { errors } = this.state;
+
     return (
       <div style={{ height: "30vh" }} className="container valign-wrapper">
         <div className="row">
@@ -48,10 +50,13 @@ class CreateArtist extends Component {
                   value={this.state.name}
                   id="name"
                   type="text"
+                  error={errors.name}
+                  className={ classnames("", {
+                    invalid: errors.name
+                  })}
                 />
                 <label htmlFor="name">Artist Name</label>
-                <span className="red-text">
-                </span>
+                <span className="red-text">{errors.name}</span>
               </div>
               <div className="col s12" style={{ paddingLeft: "11.250px" }}>
                 <button
@@ -82,7 +87,8 @@ CreateArtist.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
+  errors: state.errors
 });
 
 export default connect(mapStateToProps, { createArtist })(CreateArtist);
