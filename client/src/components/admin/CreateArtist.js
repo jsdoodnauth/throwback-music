@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { createArtist } from "../../store/actions/artistActions";
 import classnames from 'classnames';
+import { createArtist } from "../../store/actions/artistActions";
 
 class CreateArtist extends Component {
   constructor() {

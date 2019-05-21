@@ -12,6 +12,10 @@ const TrackSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     required: true
   },
+  group: {
+    ref: 'Artist',
+    type: mongoose.Schema.Types.ObjectId,
+  },
   featureArtist: [{
     ref: 'Artist',
     type: mongoose.Schema.Types.ObjectId

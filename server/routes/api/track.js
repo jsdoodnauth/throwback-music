@@ -16,9 +16,10 @@ router.post('/', (req, res) => {
     const newTrack = new Track({
       name: req.body.name,
       artist: req.body.artist,
-      released: req.body.released,
-      genre: req.body.genre,
+      group: req.body.group,
       featureArtist: req.body.featureArtist,
+      genre: req.body.genre,
+      released: req.body.released,
       album: req.body.album,
       mediaImage: req.body.mediaImage,
       mediaVideo: req.body.mediaVideo,
@@ -29,7 +30,10 @@ router.post('/', (req, res) => {
     });
     newTrack.save()
       .then(name => res.json(name))
-      .catch(err => console.log(`err: ${err}`));
+      .catch(err => {
+        console.log(`err: ${err}`);
+        return res.status(400).json(err);
+      });
   });
 });
 

@@ -7,6 +7,9 @@ class Navbar extends Component {
       <div className='navbar-fixed'>
         <nav className='z-depth-0'>
           <div className='nav-wrapper white'>
+            <ul className='left'>
+              <li><Link to='/artist/list' className='black-text'>Artists</Link></li>
+            </ul>
             <Link to='/' style={{ fontFamily: 'monospace' }} className='col s5 brand-logo center black-text'>
               <i className='material-icons'>library_music</i>
               Throwback Music

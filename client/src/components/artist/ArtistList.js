@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { ARTIST_ENDPOINT } from '../../services/API';
 
 class ArtistList extends Component {
   state = {
@@ -7,7 +8,7 @@ class ArtistList extends Component {
   };
 
   componentDidMount() {
-    axios.get('/api/artist')
+    axios.get(ARTIST_ENDPOINT)
     .then(res => {
       this.setState({ artists: res.data })
     })
